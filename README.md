@@ -31,14 +31,15 @@ def template_param(*args, &block)
   ::TemplateParams::Assertion.assert(*args, &block)
 end
 
-# Assert `poll` is defined (no `NameError`)
+# Assert `poll` is defined. If not, raises an `ArgumentError` (the "arguments"
+# of the template are invalid).
 template_param { poll } 
 
-# Assert `@course` is defined.
-# Meaningless because instance variables are always defined.
+# Assert `@course` is defined. Meaningless because instance variables are
+# always defined.
 template_param { @course } 
 
-# Assert `poll.is_a?(::Poll)`
+# Assert `poll.is_a?(::Poll)`. If not, raises a `TypeError`.
 template_param(::Poll) { poll }
 
 # Assert `@course.is_a?(::Course)`

@@ -1,3 +1,5 @@
+require "method_source"
+
 module TemplateParams
   class Assertion
 
@@ -29,7 +31,7 @@ module TemplateParams
     # Calls (yields to) the given block, and asserts that it does not
     # raise a NameError. Returns the return value of the block.
     # @api private
-    def assert_defined
+    def assert_defined(&block)
       value = nil
       begin
         value = yield
@@ -53,8 +55,7 @@ module TemplateParams
     # undefined local variable or method `banana' for ..:
     # template_param(::Banana, allow_nil: true) { banana }
     #
-    # `Proc#source` is provided by the `method_source` gem, a
-    # dependency of `pry`.
+    # `Proc#source` is provided by the `method_source` gem.
     #
     # @api private
     def udef_msg(name_error, block)
