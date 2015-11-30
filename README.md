@@ -12,19 +12,13 @@ Add this line to your application's Gemfile:
 gem 'template_params'
 ```
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install template_params
+then run `bundle`.
 
 ## Usage
 
 In rails, you may want a helper method like this:
 
-```
+```ruby
 # app/helpers/application_helper.rb
 require "template_params"
 def template_param(*args, &block)
