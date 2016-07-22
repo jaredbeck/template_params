@@ -16,14 +16,8 @@ then run `bundle`.
 
 ## Usage
 
-In rails, you may want a helper method like this:
-
+In your template, use template_param like this:
 ```ruby
-# app/helpers/application_helper.rb
-require "template_params"
-def template_param(*args, &block)
-  ::TemplateParams::Assertion.assert(*args, &block)
-end
 
 # Assert `poll` is defined. If not, raises an `ArgumentError` (the "arguments"
 # of the template are invalid).
