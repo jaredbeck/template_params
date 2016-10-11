@@ -1,9 +1,9 @@
-require 'spec_helper'
+# frozen_string_literal: true
+require "spec_helper"
 
 module TemplateParams
   RSpec.describe Assertion do
     describe ".assert" do
-
       # # Assert `poll` is defined (no `NameError`)
       # template_param { poll }
       #
@@ -15,13 +15,19 @@ module TemplateParams
         context "the given block raises a NameError" do
           it "raises an ArgumentError" do
             expect {
-              described_class.assert { local_variable_that_does_not_exist }
+              described_class.assert { lvar_that_does_not_exist }
             }.to(
               raise_error(ArgumentError) { |e|
                 expect(e.message).to match(/\AUndefined template parameter: /)
-                expect(e.message).to include("undefined local variable or method")
-                expect(e.message).to include("local_variable_that_does_not_exist")
-                expect(e.message).to include("described_class.assert { local_variable_that_does_not_exist }")
+                expect(e.message).to include(
+                  "undefined local variable or method"
+                )
+                expect(e.message).to include(
+                  "lvar_that_does_not_exist"
+                )
+                expect(e.message).to include(
+                  "described_class.assert { lvar_that_does_not_exist }"
+                )
               }
             )
           end
@@ -33,7 +39,7 @@ module TemplateParams
             expect { described_class.assert { extant } }.to_not raise_error
           end
 
-          it "never complains about instance variables (they are always defined)" do
+          it "never complains about ivars (they are always defined)" do
             expect { described_class.assert { @foobar } }.to_not raise_error
           end
         end
@@ -49,14 +55,18 @@ module TemplateParams
         context "the given block matches the given type" do
           it "does not raise an error" do
             foo = :bar
-            expect { described_class.assert(::Symbol) { foo } }.to_not raise_error
+            expect {
+              described_class.assert(::Symbol) { foo }
+            }.to_not raise_error
           end
         end
 
         context "the given block does not match the given type" do
           it "raises a TypeError" do
             foo = :bar
-            expect { described_class.assert(::String) { foo } }.to raise_error(TypeError)
+            expect {
+              described_class.assert(::String) { foo }
+            }.to raise_error(TypeError)
           end
         end
 

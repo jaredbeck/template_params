@@ -1,0 +1,107 @@
+AllCops:
+  TargetRubyVersion: 2.3
+
+# The number of lines in a method is not a useful metric compared to `AbcSize`.
+# It's common to have very long methods (> 50 lines) which are quite simple. For
+# example, a method that returns a long string with only a few interpolations.
+Metrics/MethodLength:
+  Enabled: false
+
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+# Use the semantic style. If a block has side effects use `do`, and if it is
+# pure use `{}`. This style is too nuanced for a linter, so the cop is
+# disabled.
+Style/BlockDelimiters:
+  Enabled: false
+
+Style/BracesAroundHashParameters:
+  EnforcedStyle: context_dependent
+
+# Used consistently, both leading and trailing styles are valid, but
+# Singlebrook happens to use the trailing style.
+Style/DotPosition:
+  EnforcedStyle: trailing
+
+# Use double negation wherever it would otherwise be impractical to convert
+# a value to an actual boolean.
+Style/DoubleNegation:
+  Enabled: false
+
+Style/EmptyElse:
+  EnforcedStyle: empty
+
+# Use a postfix (aka. modifier) conditional operator for single lines unless
+# doing so would exceed 60 chars.
+Style/IfUnlessModifier:
+  MaxLineLength: 60
+
+# The decision about when to use a guard clause is too nuanced for a linter.
+Style/GuardClause:
+  Enabled: false
+
+# In a multiline method call, put the closing parenthesis on its own line.
+# The first argument may either be on the first line, or the second. Both of the
+# following are correct:
+#
+# ```
+# # A. correct
+# create(:user,
+#   client: foo,
+#   long_line: blah
+# )
+#
+# # B. also correct
+# create(
+#   :user,
+#   client: foo,
+#   long_line: blah
+# )
+#
+# # C. not preferred
+# user = create :user,
+#   client: foo,
+#   long_line: blah
+# ```
+#
+# Rubocop supports B, but not A. This project allows both, so this cop is
+# disabled.
+Style/MultilineMethodCallBraceLayout:
+  Enabled: false
+
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+# This is a new cop in rubocop 0.41, and I'm not sure if I want to adopt it yet.
+Style/NumericLiteralPrefix:
+  Enabled: false
+
+# Use `x > 0` because it is more specific than `x.positive?`.
+# However, `x.zero?` is acceptable because it is specific enough.
+Style/NumericPredicate:
+  Enabled: false
+
+# This is a new cop, and has a bug: https://github.com/bbatsov/rubocop/issues/3515
+# When that bug is fixed, we can try it again.
+Style/SafeNavigation:
+  Enabled: false
+
+# The decision between double quotes and single quotes is not something Leon
+# or I feel strongly about, but we might as well be consistent, especially if
+# rubocop is going to `--auto-correct` for us. Double quotes are slightly
+# easier to read and there is no difference in performance. -Jared 2016-02-18
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# Predicate methods, aka. question-mark methods, such as `def x?; @x; end` are
+# acceptable. See https://github.com/bbatsov/rubocop/issues/2736 for discussion.
+Style/TrivialAccessors:
+  AllowPredicates: true
+
+# Use numbers wherever you like in your variables. Who cares.
+Style/VariableNumber:
+  Enabled: false

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 require "method_source"
 
 module TemplateParams
+  # A simple assertion suitable for view template preconditions.
   class Assertion
-
     # @api public
     def initialize(type, options)
       @type = type
@@ -45,7 +46,7 @@ module TemplateParams
     # @api private
     def assert_type(value)
       unless @type.nil? || value.is_a?(@type) || allow_nil && value.nil?
-        fail TypeError, format("Expected %s, got %s", @type, value.class)
+        raise TypeError, format("Expected %s, got %s", @type, value.class)
       end
     end
 
@@ -59,11 +60,12 @@ module TemplateParams
     #
     # @api private
     def udef_msg(name_error, block)
-      msg = "Undefined template parameter: #{name_error}"
+      prefix = "Undefined template parameter: #{name_error}"
       if block.respond_to?(:source)
-        msg << ": " + block.source.strip
+        format("%s: %s", prefix, block.source.strip)
+      else
+        prefix
       end
-      msg
     end
   end
 end
