@@ -5,7 +5,9 @@ require "rubocop/rake_task"
 RuboCop::RakeTask.new
 
 require "rspec/core/rake_task"
-RSpec::Core::RakeTask.new(:spec)
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.verbose = false
+end
 
 # Default task: lint then test
 task default: [] # in case it hasn't been set
