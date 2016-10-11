@@ -1,37 +1,37 @@
 # TemplateParams
 
-Runtime type-check for template preconditions, including instance variables
-and local variables. Think of this as the method signature of a template.
-There should be at least one of these assertions in almost every template.
+Runtime type-check for **template preconditions**, including instance variables and local
+variables. Think of this as the method signature of a template, as the **documentation**.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+1. Add it to your Gemfile and run `bundle`.
 
-```ruby
-gem 'template_params'
-```
+    ```ruby
+    gem 'template_params'
+    ```
 
-then run `bundle`.
+2. If you're using rails, add a helper method.
+
+   ```ruby
+   # app/helpers/application_helper.rb
+   def template_param(*args, &block)
+     ::TemplateParams::Assertion.assert(*args, &block)
+   end
+   ```
+
+  If you're not using rails, let me know how you install it, and I'll put that here.
 
 ## Usage
 
-In rails, you may want a helper method like this:
-
 ```ruby
-# app/helpers/application_helper.rb
-require "template_params"
-def template_param(*args, &block)
-  ::TemplateParams::Assertion.assert(*args, &block)
-end
-
 # Assert `poll` is defined. If not, raises an `ArgumentError` (the "arguments"
 # of the template are invalid).
-template_param { poll } 
+template_param { poll }
 
 # Assert `@course` is defined. Meaningless because instance variables are
 # always defined.
-template_param { @course } 
+template_param { @course }
 
 # Assert `poll.is_a?(::Poll)`. If not, raises a `TypeError`.
 template_param(::Poll) { poll }
