@@ -8,7 +8,7 @@ Breaking changes
 
 New features
 
-- None
+- Allow method_source 0.9
 
 Fixed
 
