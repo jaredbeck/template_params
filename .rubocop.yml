@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.2
 
 # The number of lines in a method is not a useful metric compared to `AbcSize`.
 # It's common to have very long methods (> 50 lines) which are quite simple. For
