@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "bundler/gem_tasks"
 
 require "rubocop/rake_task"
@@ -12,4 +13,4 @@ end
 # Default task: lint then test
 task default: [] # in case it hasn't been set
 Rake::Task[:default].clear
-task default: [:rubocop, :spec]
+task default: %i[rubocop spec]
