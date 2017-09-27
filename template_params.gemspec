@@ -9,12 +9,12 @@ Gem::Specification.new do |spec|
   spec.version = TemplateParams::VERSION
   spec.authors = ["Jared Beck"]
   spec.email = ["jared@jaredbeck.com"]
-  spec.summary = "Parameter assertions for your view templates"
+  spec.summary = "Parameter assertions for view templates"
   spec.homepage = "https://github.com/jaredbeck/template_params"
   spec.license = "MIT"
   spec.files = `git ls-files -z`.
     split("\x0").
-    reject { |f| f.match(%r{^(test|spec|features)/}) }
+    reject { |f| f.match(%r{^(bin|test|spec|features)/}) }
   spec.bindir = "exe"
   spec.executables = []
   spec.require_paths = ["lib"]
