@@ -3,6 +3,10 @@
 Runtime type-check for **template preconditions**, including instance variables and local
 variables. Think of this as the method signature of a template, as the **documentation**.
 
+## Not maintained
+
+I now use `T.let` and `T.must` from [sorbet-runtime](https://github.com/sorbet/sorbet).
+
 ## Installation
 
 1. Add it to your Gemfile and run `bundle`.
